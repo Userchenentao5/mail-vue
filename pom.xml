@@ -104,6 +104,20 @@
           <version>${mybatis.version}</version>
       </dependency>
 
+      <!--lombok插件-->
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <optional>true</optional>
+      </dependency>
+
+      <!--工具包-->
+      <dependency>
+          <groupId>cn.hutool</groupId>
+          <artifactId>hutool-all</artifactId>
+          <version>${hutool.version}</version>
+      </dependency>
+
   </dependencies>
 
     <repositories>
