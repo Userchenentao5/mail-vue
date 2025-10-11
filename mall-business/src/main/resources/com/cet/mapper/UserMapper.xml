@@ -4,4 +4,115 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cet.mapper.user.UserMapper">
 
+    <resultMap id="userResult" type="com.cet.entity.user.UserEntity">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="create_user_id" property="createUserId"/>
+        <result column="create_user_name" property="createUserName"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user_id" property="updateUserId"/>
+        <result column="update_user_name" property="updateUserName"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <sql id="paginationSql">
+        limit #{pageBegin}, #{pageSize}
+    </sql>
+
+    <sql id="selectUserColumn">
+        id,
+        user_name,
+          create_user_id,
+          create_user_name,
+          create_time,
+          update_user_id,
+          update_user_name,
+          update_time,
+          is_del
+    </sql>
+
+    <sql id="queryWhere">
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_name = #{userName}
+            </if>
+            and is_del = 0
+        </where>
+    </sql>
+
+    <insert id="insert">
+        insert into user
+        (id,
+         user_name,
+         create_user_id,
+         create_user_name,
+         create_time,
+         update_user_id,
+         update_user_name,
+         update_time
+        )
+        values
+            (
+             #{id},
+             #{userName},
+             #{createUserId},
+             now(3),
+             #{updateUserId},
+             #{updateUserName},
+             now(3)
+            )
+    </insert>
+
+    <update id="update">
+        update user
+        <set>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            update_time = now(3)
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        update
+            user
+        set
+            is_del = 1, update_time = now(3)
+        where
+            id = #{id}
+    </delete>
+
+    <select id="findById" resultMap="userResult">
+        select
+            <include refid="selectUserColumn"/>
+        from
+            user
+        where
+            id = #{id}
+    </select>
+
+    <select id="searchByCondition" resultMap="userResult">
+
+        select
+            <include refid="selectUserColumn"/>
+        from
+            user
+        <include refid="queryWhere"/>
+        <include refid="paginationSql"/>
+    </select>
+
+    <select id="searchCount" resultType="java.lang.Integer">
+        select
+            count(*)
+        from
+            user
+        <include refid="queryWhere"/>
+    </select>
+
+
 </mapper>

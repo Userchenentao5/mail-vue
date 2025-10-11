@@ -12,5 +12,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class UserConditionEntity extends RequestConditionEntity {
 
+    private Long id;
 
+    private String userName;
 }
