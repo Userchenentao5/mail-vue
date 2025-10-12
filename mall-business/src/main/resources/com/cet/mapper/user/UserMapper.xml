@@ -60,6 +60,7 @@
              #{id},
              #{userName},
              #{createUserId},
+             #{createUserName},
              now(3),
              #{updateUserId},
              #{updateUserName},
