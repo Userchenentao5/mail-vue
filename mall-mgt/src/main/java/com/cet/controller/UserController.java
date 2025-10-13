@@ -8,9 +8,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+/**
+ * @author 30952
+ */
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class
+UserController {
 
     @Resource
     private UserService userService;

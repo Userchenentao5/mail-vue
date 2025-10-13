@@ -3,7 +3,6 @@ package com.cet.mapper.user;
 import com.cet.entity.user.UserConditionEntity;
 import com.cet.entity.user.UserEntity;
 import org.apache.ibatis.annotations.Param;
-import org.hibernate.validator.constraints.ParameterScriptAssert;
 
 import java.util.List;
 
