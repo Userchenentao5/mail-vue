@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class UserEntity extends BaseEntity {
+public class UserDemoEntity extends BaseEntity {
     
 	private static final long serialVersionUID = 1L;
   

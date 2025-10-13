@@ -1,28 +1,27 @@
-package com.cet.service;
+package com.cet.service.user;
 
 import com.cet.entity.ResponsePageEntity;
 import com.cet.entity.user.UserConditionEntity;
-import com.cet.entity.user.UserEntity;
-import com.cet.mapper.user.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.cet.entity.user.UserDemoEntity;
+import com.cet.mapper.user.UserDemoMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserDemoService {
 
     @Resource
-    private UserMapper userMapper;
+    private UserDemoMapper userDemoMapper;
 
     /**
      * 根据id查询用户信息
      * @param id 用户Id
      * @return 用户信息
      */
-    public UserEntity findById(Long id) {
-        return userMapper.findById(id);
+    public UserDemoEntity findById(Long id) {
+        return userDemoMapper.findById(id);
     }
 
     /**
@@ -30,31 +29,31 @@ public class UserService {
      * @param userConditionEntity 条件
      * @return 用户列表
      */
-    public ResponsePageEntity<UserEntity> searchByPage(UserConditionEntity userConditionEntity) {
-        int count = userMapper.searchCount(userConditionEntity);
+    public ResponsePageEntity<UserDemoEntity> searchByPage(UserConditionEntity userConditionEntity) {
+        int count = userDemoMapper.searchCount(userConditionEntity);
         if (count == 0) {
             return ResponsePageEntity.buildEmpty(userConditionEntity);
         }
-        List<UserEntity> userEntities = userMapper.searchByCondition(userConditionEntity);
+        List<UserDemoEntity> userEntities = userDemoMapper.searchByCondition(userConditionEntity);
         return ResponsePageEntity.build(userConditionEntity, count, userEntities);
     }
 
     /**
      * 添加用户
-     * @param userEntity 用户实体
+     * @param userDemoEntity 用户实体
      * @return 影响行数
      */
-    public int insert(UserEntity userEntity) {
-        return userMapper.insert(userEntity);
+    public int insert(UserDemoEntity userDemoEntity) {
+        return userDemoMapper.insert(userDemoEntity);
     }
 
     /**
      * 修改用户
-     * @param userEntity 用户实体
+     * @param userDemoEntity 用户实体
      * @return 影响行数
      */
-    public int update(UserEntity userEntity) {
-        return userMapper.update(userEntity);
+    public int update(UserDemoEntity userDemoEntity) {
+        return userDemoMapper.update(userDemoEntity);
     }
 
     /**
@@ -63,6 +62,6 @@ public class UserService {
      * @return 影响行数
      */
     public int delete(Long id) {
-        return userMapper.deleteById(id);
+        return userDemoMapper.deleteById(id);
     }
 }

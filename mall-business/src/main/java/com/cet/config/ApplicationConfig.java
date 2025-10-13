@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author 30952
  */
-@MapperScan(basePackages = "com.cet.mapper.user")
+@MapperScan(basePackages = "com.cet.mapper")
 @Configuration
 public class ApplicationConfig {
 }

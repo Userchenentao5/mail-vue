@@ -1,7 +1,7 @@
 package com.cet.mapper.user;
 
 import com.cet.entity.user.UserConditionEntity;
-import com.cet.entity.user.UserEntity;
+import com.cet.entity.user.UserDemoEntity;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -9,21 +9,21 @@ import java.util.List;
 /**
  * @author 30952
  */
-public interface UserMapper {
+public interface UserDemoMapper {
 
     /**
      * 根据id查询用户信息
      * @param id 用户Id
      * @return 用户信息
      */
-    UserEntity findById(@Param("id") Long id);
+    UserDemoEntity findById(@Param("id") Long id);
 
     /**
      * 根据条件查询用户列表
      * @param userConditionEntity 条件
      * @return 用户列表
      */
-    List<UserEntity> searchByCondition(UserConditionEntity userConditionEntity);
+    List<UserDemoEntity> searchByCondition(UserConditionEntity userConditionEntity);
 
     /**
      * 根据条件查询用户数量
@@ -34,17 +34,17 @@ public interface UserMapper {
 
     /**
      * 添加用户
-     * @param userEntity 用户实体
+     * @param userDemoEntity 用户实体
      * @return 影响行数
      */
-    int insert(UserEntity userEntity);
+    int insert(UserDemoEntity userDemoEntity);
 
     /**
      * 修改用户
-     * @param userEntity 用户实体
+     * @param userDemoEntity 用户实体
      * @return 影响行数
      */
-    int update(UserEntity userEntity);
+    int update(UserDemoEntity userDemoEntity);
 
     /**
      * 删除用户
