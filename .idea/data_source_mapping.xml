@@ -2,6 +2,5 @@
 <project version="4">
   <component name="DataSourcePerFileMappings">
     <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/abe2cf46-43ed-48d2-a62d-62c73d7b7bf4/console.sql" value="abe2cf46-43ed-48d2-a62d-62c73d7b7bf4" />
-    <file url="file://$PROJECT_DIR$/mall-business/src/main/resources/com/cet/mapper/user/UserMapper.xml" value="abe2cf46-43ed-48d2-a62d-62c73d7b7bf4" />
   </component>
 </project>
