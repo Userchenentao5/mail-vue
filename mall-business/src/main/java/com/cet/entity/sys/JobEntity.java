@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import com.cet.entity.BaseEntity;
 
 /**
- * 岗位实体 该项目是知识星球：java突击队 的内部项目
+ * 岗位实体 
  * 
  * @author cet
  * @date 2025-10-13 14:39:38

@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-/**
- * @author 30952
- */
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @Data

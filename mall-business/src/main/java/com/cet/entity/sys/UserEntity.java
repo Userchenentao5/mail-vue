@@ -8,7 +8,7 @@ import com.cet.entity.BaseEntity;
 import java.util.Date;
 
 /**
- * 用户实体 该项目是知识星球：java突击队 的内部项目
+ * 用户实体 
  * 
  * @author cet
  * @date 2025-10-13 14:39:38

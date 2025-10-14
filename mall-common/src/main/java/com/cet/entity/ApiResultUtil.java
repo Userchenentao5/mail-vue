@@ -4,8 +4,7 @@ package com.cet.entity;
  * api请求响应实体处理工具类
  *
  * @author cet
- *
- * */
+ */
 public class ApiResultUtil {
 
     private ApiResultUtil() {
