@@ -34,6 +34,7 @@ public class GlobalApiResultHandler implements ResponseBodyAdvice<Object> {
         if (!StringUtils.hasText(uri)) {
             return false;
         }
+        // 正式使用的业务代码api以 /v1开头
         return uri.contains("/v1");
     }
 
