@@ -1,15 +1,26 @@
 package com.cet.service.sys;
 
+import java.util.Arrays;
 import java.util.List;
 
+import com.cet.auth.AuthUserEntity;
+import com.cet.auth.JwtUserEntity;
+import com.cet.auth.TokenEntity;
 import com.cet.entity.sys.UserConditionEntity;
 import com.cet.entity.sys.UserEntity;
+import com.cet.helper.TokenHelper;
 import com.cet.mapper.sys.UserMapper;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.cet.entity.ResponsePageEntity;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 用户 服务层
@@ -22,6 +33,47 @@ public class UserService {
 
 	@Resource
 	private UserMapper userMapper;
+
+  @Resource
+  private TokenHelper tokenHelper;
+
+  @Resource
+  private AuthenticationManagerBuilder authenticationManagerBuilder;
+
+    /**
+     * 用户登录
+     * @param authUserEntity 用户录入信息
+     */
+    public TokenEntity login(AuthUserEntity authUserEntity) {
+        UsernamePasswordAuthenticationToken authenticationToken =
+            new UsernamePasswordAuthenticationToken(authUserEntity.getUsername(), authUserEntity.getPassword());
+
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        // 直接使用认证成功的用户名创建JwtUserEntity
+        List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("User"));
+        JwtUserEntity jwtUserEntity = new JwtUserEntity(
+            1L, // 暂时固定ID
+            authUserEntity.getUsername(),
+            null, // 密码不需要在token中
+            authorities,
+            Arrays.asList("User")
+        );
+
+        String token = tokenHelper.generateToken(jwtUserEntity);
+        return new TokenEntity(authUserEntity.getUsername(), token);
+    }
+
+    /**
+     * 用户登出
+     *
+     * @param request 请求
+     */
+    public void logout(HttpServletRequest request) {
+//        String token = TokenUtil.getTokenForAuthorization(request);
+//        AssertUtil.hasLength(token, "请重新登录");
+//        tokenHelper.delToken(token);
+    }
 
 	/**
      * 查询用户信息
