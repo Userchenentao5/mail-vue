@@ -9,4 +9,5 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan(basePackages = "com.cet.mapper")
 @Configuration
 public class ApplicationConfig {
+
 }

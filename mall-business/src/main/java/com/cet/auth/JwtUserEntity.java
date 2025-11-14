@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class JwtUserEntity implements UserDetails {
     private String username;
     @JsonIgnore
     private String password;
-    private List<SimpleGrantedAuthority> authorities;
+    private List<SimpleGrantedAuthority> authorities = new ArrayList<>();
     /**
      * 角色信息
      */

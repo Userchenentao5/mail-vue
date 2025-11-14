@@ -45,4 +45,14 @@ public class RedisUtil {
             return false;
         }
     }
+
+    /**
+     * 获取普通缓存
+     *
+     * @param key 键
+     * @return 值
+     */
+    public String get(String key) {
+        return key == null ? null : stringRedisTemplate.opsForValue().get(key);
+    }
 }

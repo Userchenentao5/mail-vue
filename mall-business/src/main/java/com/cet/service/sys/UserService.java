@@ -1,6 +1,7 @@
 package com.cet.service.sys;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.cet.auth.AuthUserEntity;
@@ -45,19 +46,20 @@ public class UserService {
      * @param authUserEntity 用户录入信息
      */
     public TokenEntity login(AuthUserEntity authUserEntity) {
+
         UsernamePasswordAuthenticationToken authenticationToken =
             new UsernamePasswordAuthenticationToken(authUserEntity.getUsername(), authUserEntity.getPassword());
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         // 直接使用认证成功的用户名创建JwtUserEntity
-        List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("User"));
+        List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("USER"));
         JwtUserEntity jwtUserEntity = new JwtUserEntity(
             1L, // 暂时固定ID
             authUserEntity.getUsername(),
             null, // 密码不需要在token中
             authorities,
-            Arrays.asList("User")
+            Collections.singletonList("USER")
         );
 
         String token = tokenHelper.generateToken(jwtUserEntity);

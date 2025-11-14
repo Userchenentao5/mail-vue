@@ -103,6 +103,7 @@ public class SpringSecurityConfig implements ApplicationContextAware {
                 .antMatchers(noLoginUrls.toArray(new String[0])).permitAll()
                 // 所有请求都需要认证
                 .anyRequest().authenticated()
+                .and().apply(new JwtTokenConfigurer())
                 .and()
                 .build();
     }
